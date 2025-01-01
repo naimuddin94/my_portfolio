@@ -15,3 +15,8 @@ export interface IProject {
   description: string;
   technologies: ObjectId[];
 }
+
+export interface ITechnology {
+  name: string;
+  image: string;
+}
