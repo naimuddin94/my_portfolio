@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 
-export interface ISkill {
+export interface ITechnology {
   name: string;
   url: string;
   image: string;
@@ -14,9 +14,4 @@ export interface IProject {
   images: string[];
   description: string;
   technologies: ObjectId[];
-}
-
-export interface ITechnology {
-  name: string;
-  image: string;
 }
