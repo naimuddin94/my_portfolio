@@ -1,7 +1,9 @@
 "use client";
 
+import my_img from "@/assets/images/mypic.jpg";
 import { useTypewriter } from "@/hook/useTypewriter";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const CodeSnippet = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -19,7 +21,7 @@ const CodeSnippet = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function DeveloperBanner() {
-  const typedText = useTypewriter("Hello, I'm a Software Developer");
+  const typedText = useTypewriter("Hello, I'm a Web Developer");
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-pink-800 text-white min-h-screen flex items-center justify-center -m-16 -z-10">
@@ -40,10 +42,12 @@ export default function DeveloperBanner() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <img
-            src="/placeholder.svg?height=150&width=150"
+          <Image
+            width={128}
+            height={128}
+            src={my_img}
             alt="Developer Avatar"
-            className="w-32 h-32 mx-auto rounded-full border-4 border-white shadow-lg"
+            className="w-32 h-32 mx-auto rounded-full border-4 border-white/70 shadow-lg"
           />
         </motion.div>
 
