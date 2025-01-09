@@ -66,6 +66,7 @@ const itemVariants = {
 };
 
 export default function ProjectsSection() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
