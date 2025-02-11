@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 import Container from "./Container";
 
 interface Skill {
@@ -57,23 +57,32 @@ const SkillNode: React.FC<{ name: string; isMain?: boolean }> = ({
       isMain ? "bg-purple-300 text-purple-900" : "bg-purple-100 text-purple-700"
     }`}
     initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
+    whileInView={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.5 }}
     whileHover={{ scale: 1.05 }}
+    viewport={{ once: false, amount: 0.3 }} // Animation triggers every time this element enters the viewport
   >
     {name}
   </motion.div>
 );
 
 const SkillsDiagramVertical: React.FC = () => {
+  const sectionRef = useRef(null);
+  useInView(sectionRef, { once: false, amount: 0.3 });
+
   return (
     <Container>
-      <section id="skills" className="py-16 px-4 overflow-x-auto bg-white">
+      <section
+        id="skills"
+        className="py-16 px-4 overflow-x-auto bg-white"
+        ref={sectionRef}
+      >
         <motion.h2
           className="text-3xl font-bold text-center mb-8 text-slate-700"
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           Technical Skills
         </motion.h2>
@@ -83,8 +92,9 @@ const SkillsDiagramVertical: React.FC = () => {
             <motion.div
               className="h-12 w-px bg-purple-300"
               initial={{ height: 0 }}
-              animate={{ height: 48 }}
+              whileInView={{ height: 48 }}
               transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: false, amount: 0.3 }} // Animate on every view
             />
             {skillsData.map((category, index) => (
               <React.Fragment key={category.name}>
@@ -93,8 +103,12 @@ const SkillsDiagramVertical: React.FC = () => {
                   <motion.div
                     className="w-8 h-px bg-purple-300"
                     initial={{ width: 0 }}
-                    animate={{ width: 32 }}
-                    transition={{ duration: 0.3, delay: 0.7 + index * 0.2 }}
+                    whileInView={{ width: 32 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.7 + index * 0.2,
+                    }}
+                    viewport={{ once: false, amount: 0.3 }}
                   />
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 ml-4">
                     {category.skills.map((skill) => (
@@ -106,8 +120,12 @@ const SkillsDiagramVertical: React.FC = () => {
                   <motion.div
                     className="h-12 w-px bg-purple-300"
                     initial={{ height: 0 }}
-                    animate={{ height: 48 }}
-                    transition={{ duration: 0.5, delay: 0.7 + index * 0.2 }}
+                    whileInView={{ height: 48 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.7 + index * 0.2,
+                    }}
+                    viewport={{ once: false, amount: 0.3 }}
                   />
                 )}
               </React.Fragment>

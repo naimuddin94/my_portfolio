@@ -9,39 +9,42 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { GitubDialog } from "@/components/utility/GithubDialog";
+import { projects } from "@/constant";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import Container from "./Container";
 
-const projects = [
-  {
-    title: "E-commerce Platform",
-    description:
-      "A full-stack e-commerce solution with React, Node.js, and MongoDB.",
-    image: "/placeholder.svg?height=200&width=300",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
-    liveUrl: "https://example.com/ecommerce",
-    githubUrl: "https://github.com/yourusername/ecommerce",
-  },
-  {
-    title: "Weather Dashboard",
-    description: "Real-time weather app using OpenWeatherMap API and React.",
-    image: "/placeholder.svg?height=200&width=300",
-    tags: ["React", "API Integration", "Tailwind CSS"],
-    liveUrl: "https://example.com/weather",
-    githubUrl: "https://github.com/yourusername/weather-dashboard",
-  },
-  {
-    title: "Task Management App",
-    description:
-      "A Kanban-style task management application built with Next.js and Firebase.",
-    image: "/placeholder.svg?height=200&width=300",
-    tags: ["Next.js", "Firebase", "Tailwind CSS"],
-    liveUrl: "https://example.com/tasks",
-    githubUrl: "https://github.com/yourusername/task-manager",
-  },
-];
+// const projects = [
+//   {
+//     title: "E-commerce Platform",
+//     description:
+//       "A full-stack e-commerce solution with React, Node.js, and MongoDB.",
+//     image: "/placeholder.svg?height=200&width=300",
+//     tags: ["React", "Node.js", "MongoDB", "Express"],
+//     liveUrl: "https://example.com/ecommerce",
+//     githubUrl: "https://github.com/yourusername/ecommerce",
+//   },
+//   {
+//     title: "Weather Dashboard",
+//     description: "Real-time weather app using OpenWeatherMap API and React.",
+//     image: "/placeholder.svg?height=200&width=300",
+//     tags: ["React", "API Integration", "Tailwind CSS"],
+//     liveUrl: "https://example.com/weather",
+//     githubUrl: "https://github.com/yourusername/weather-dashboard",
+//   },
+//   {
+//     title: "Task Management App",
+//     description:
+//       "A Kanban-style task management application built with Next.js and Firebase.",
+//     image: "/placeholder.svg?height=200&width=300",
+//     tags: ["Next.js", "Firebase", "Tailwind CSS"],
+//     liveUrl: "https://example.com/tasks",
+//     githubUrl: "https://github.com/yourusername/task-manager",
+//   },
+// ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -99,7 +102,7 @@ export default function ProjectsSection() {
           >
             {projects.map((project, index) => (
               <motion.div
-                key={project.title}
+                key={project.liveLink}
                 variants={itemVariants}
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
@@ -110,19 +113,24 @@ export default function ProjectsSection() {
                     <CardDescription>{project.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="flex-grow">
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover rounded-md mb-4"
+                    <motion.div
+                      className="w-full h-48 object-cover rounded-md mb-4 overflow-hidden"
                       whileHover={{ scale: 1.05 }}
                       transition={{
                         type: "spring",
                         stiffness: 300,
                         damping: 10,
                       }}
-                    />
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-48 object-cover rounded-md mb-4"
+                        layout="responsive"
+                      />
+                    </motion.div>
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
+                      {project.techStack.map((tag) => (
                         <span
                           key={tag}
                           className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
@@ -135,7 +143,7 @@ export default function ProjectsSection() {
                   <CardFooter className="flex justify-between">
                     <Button variant="outline" size="sm" asChild>
                       <a
-                        href={project.liveUrl}
+                        href={project.liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -143,16 +151,10 @@ export default function ProjectsSection() {
                         Live Demo
                       </a>
                     </Button>
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="w-4 h-4 mr-2" />
-                        GitHub
-                      </a>
-                    </Button>
+                    <GitubDialog
+                      frontend={project.frontend}
+                      backend={project.backend}
+                    />
                   </CardFooter>
                 </Card>
               </motion.div>
