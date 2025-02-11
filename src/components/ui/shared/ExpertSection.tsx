@@ -57,11 +57,12 @@ export default function ExpertSection() {
   return (
     <section
       ref={ref}
-      className="py-16 bg-gray-50 overflow-hidden max-w-[90%] -mt-10 mx-auto rounded"
+      id="about"
+      className="py-6 bg-gray-50 overflow-hidden max-w-[90%] -mt-16 mx-auto rounded z-30 relative"
     >
       <motion.div className="container mx-auto px-4" style={{ opacity, scale }}>
         <motion.h2
-          className="text-3xl font-bold text-center mb-8"
+          className="text-3xl font-bold text-center mb-8 text-slate-700"
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
@@ -87,7 +88,7 @@ export default function ExpertSection() {
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              className="bg-white p-6 rounded-lg shadow-md transition duration-300 ease-in-out"
+              className="bg-white p-6 rounded-lg shadow-md transition duration-300 ease-in-out text-slate-700"
               variants={itemVariants}
               whileHover={{
                 scale: 1.05,
