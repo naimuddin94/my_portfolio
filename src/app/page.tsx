@@ -1,3 +1,4 @@
+import ContactSection from "@/components/ui/shared/Contact";
 import DeveloperBanner from "@/components/ui/shared/DeveloperBanner";
 import ExpertSection from "@/components/ui/shared/ExpertSection";
 import ProjectsSection from "@/components/ui/shared/ProjectsSection";
@@ -8,9 +9,9 @@ export default function Home() {
     <main>
       <DeveloperBanner />
       <ExpertSection />
-      {/* <SkillsSection /> */}
       <SkillsDiagramVertical />
       <ProjectsSection />
+      <ContactSection />
     </main>
   );
 }
