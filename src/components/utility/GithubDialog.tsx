@@ -32,7 +32,8 @@ export function GitubDialog({ frontend, backend }: IProps) {
         <DialogHeader>
           <DialogTitle>Source Code</DialogTitle>
           <DialogDescription>
-            Anyone who has this link will be able to view this.
+            Access the source code for both the frontend and backend of this
+            project using the links below.
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
@@ -43,10 +44,7 @@ export function GitubDialog({ frontend, backend }: IProps) {
             <Input id="link" defaultValue={frontend} readOnly />
           </div>
           <a href={frontend} target="_blank">
-            <Button
-              type="submit"
-              size="sm"
-            >
+            <Button type="submit" size="sm">
               Frontend
               <MoveUpRight size={15} />
             </Button>
@@ -60,10 +58,7 @@ export function GitubDialog({ frontend, backend }: IProps) {
             <Input id="link" defaultValue={backend} readOnly />
           </div>
           <a href={backend} target="_blank">
-            <Button
-              type="submit"
-              size="sm"
-            >
+            <Button type="submit" size="sm">
               Backend
               <MoveUpRight size={15} />
             </Button>

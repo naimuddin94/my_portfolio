@@ -10,7 +10,7 @@ export const TypewriterWords = [
   "Web Developer",
   "React Developer",
   "NextJS Developer",
-  "Node.js Developer",
+  "NodeJS Developer",
   "NestJS Developer",
   "JavaScript Developer",
   "Typescript Developer",
